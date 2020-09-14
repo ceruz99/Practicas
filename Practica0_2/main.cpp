@@ -1,3 +1,5 @@
+// Juan Camilo Mazo Castro. Practica 0 punto 2 grupo 6 laboratorio informática 2.
+
 #include <iostream>
 
 using namespace std;
