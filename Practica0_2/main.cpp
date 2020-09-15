@@ -14,9 +14,9 @@ int main()
         divisor=divisor*10;
         }
     while(divisor!=0){
-        int a=0;
-        a=(number/divisor)*(number/divisor);
-        result=result+a;
+        int temporal=0;
+        temporal=(number/divisor)*(number/divisor);
+        result=result+temporal;
         number=number%divisor;
         divisor=divisor/10;
         }
