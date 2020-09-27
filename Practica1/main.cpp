@@ -7,13 +7,12 @@ int main()
     int i=-1;
     while(i!=0){
         cout<<"Introduzcan el probrema que desea realizar, para finalizar introduzca el numero 0. "<<endl;
-        cin>>i;
+        cin>>i;       
         switch(i) {
 
 
 
-            case 1:
-
+            case 1:{
                 char caracter;
                 cout<<"Introduzca el caracter para verificar si es una vocal o una consonante "<<endl; cin>>caracter;
                 switch(caracter){
@@ -28,9 +27,10 @@ int main()
                     break;
                 }
             break;
+            }
 
 
-            case 3:
+            case 3:{
                int month;
                int day;
                cout<<"Introduzca un mes "<<endl; cin>>month;
@@ -73,25 +73,126 @@ int main()
                        }
                    }
               break;
+              }
+
+
+              case 5:{
+                int number;
+                cout<<"Ingrese un numero impar "<<endl; cin>>number;
+                if((number % 2)!=0){
+                    int temporal; temporal=number/2;
+                    int asterisk; asterisk=-1;
+                    for(int j=0;j<((number/2)+1);j++){
+
+                        asterisk+=2;
+                        for(int k=(temporal); k>0;k--){
+                            cout<<" ";
+                        }
+                        for(int k=0; k<asterisk;k++){
+                            cout<<"*";
+                        }
+                        for(int k=(temporal); k>0;k--){
+                            cout<<" ";
+                        }
+                        cout<<endl;
+                        temporal-=1;
+                    }
+                    asterisk=number; temporal=1;
+                    for(int j=0;j<(number/2);j++){
+                        asterisk-=2;
+                        for(int k=temporal;k>0;k--){
+                            cout<<" ";
+                        }
+                        for(int k=asterisk;k>0;k--){
+                            cout<<"*";
+                        }
+                        for(int k=temporal;k>0;k--){
+                            cout<<" ";
+                        }
+                        cout<<endl;
+                        temporal+=1;
+                    }
+                }
+                else
+                    cout<<"El numero ingresado no es un numero impar "<<endl;
+            break;
+            }
+
+            case 7:{
+               int count=0,value=0;
+               cout<<"Ingrese un numero"<<endl; cin>>value;
+               for(int i=2,j=1,k=1;i<=value;){
+                   if(i%2==0){
+                        count=count+i;
+                   }
+                   k=i;
+                   i=i+j;
+                   j=k;
+               }
+               cout<<"El resultado de la suma es "<<count<<endl;
+            break;
+            }
+
+            case 8:{
+                int a=0,b=0,c=0,mult=1,result=0;
+                cout<<"Ingrese el valor de a "<<endl; cin>>a;
+                cout<<"Ingrese el valor de b "<<endl; cin>>b;
+                cout<<"Ingrese el valor de c "<<endl; cin>>c;
+                int r1=a,r2=b;
+                while(r1<c){
+                    result=result+r1;
+                    cout<<r1;
+                    cout<<"+";
+                    mult+=1;
+                    r1=a*mult;
+                }
+                mult=1;
+                r1=a;r2=b;
+                int aux=b;
+                while(r2<c){
+
+                    if(r2==a*aux){
+                        aux=aux+b;
+                    }
+                    else{
+                        result=result+r2;
+                        cout<<r2;
+                    }
+                    mult+=1;
+                    r2=b*mult;
+                    if(b*mult+1<c){
+                        cout<<"+";
+                    }
+                    else{
+                        break;
+                    }
+                }
+                cout<<"="<<result<<endl;
+            break;
+            }
+
+            case 10:{
+                int n=0,count=1,result=0;
+                cout<<"Ingrese un numero n"<<endl; cin>>n;
+                i=1;
+                while(i<n){
+                    count+=2;
+                    bool prime=true;
+                    for(int j=2; j<count && prime==true;j++){
+                        if(count%j==0) prime=false;
+                    }
+                    if(prime==true){
+                        i++;
+                        result=count;
+                    }
+                }
+                cout<<"El primo numero "<<n<<" es "<<result<<endl;
+            break;
+            }
+
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
