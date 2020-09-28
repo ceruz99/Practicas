@@ -190,7 +190,75 @@ int main()
             break;
             }
 
+            case 12:{
+            int number=0;
+            cout<<"Ingrese el numero al que se le calculara el mayor factor primo. "<<endl; cin>>number;
+            if(number==2){
+                cout<<"El mayor factor primo de 2 es: 2"<<endl;
+            }
+            else{
+                int factor=0, count=1;
+                bool found=false;
+                while(found==false){
+                    count+=2;
+                    bool prime=true;
+                    for(int j=2; j<count && prime==true ;j++){
+                        if(count%j==0) prime=false;
+                    }
+                    if(prime==true && number%count==0){
+                            factor=count;
+                    }
+                    else if(count>number){
+                       found=true;
+                    }
 
+                }
+                cout<<"El mayor factor primo de "<<number<<" es: "<<factor<<endl;
+            }
+            break;
+            }
+
+            case 13:{
+                int number=0;
+                cout<<"Introduzca el numero con el cual se calculara la suma de los primos menores a el. "<<endl; cin>>number;
+                if(number==1) cout<<"El resultado de la suma es 1"<<endl;
+                else if(number==2) cout<<"El resultado de la suma es 3"<<endl;
+                else{
+                    int result=2;
+                    for(int count=1;count<number;count+=2){
+                        bool prime=true;
+                        for(int j=2;j<count && prime==true; j++){
+                            if(count%j==0 && count<number) prime=false;
+                        }
+                        if(prime==true) result=result+count;
+                    }
+                    cout<<"El resultado de la suma es "<<result-1<<endl;
+                }
+            break;
+            }
+            case 15:{
+                int n=0,sum=1,increasing=2,aux=1,substraction=2;
+                cout<<"Ingrese el numero n de la espiral nxn: "<<endl; cin>>n;
+                for(int w=3;w<n;w+=2){
+                    substraction+=1;
+                }
+                if(n==3) cout<<"En un espiral de 3x3, la suma es: 25"<<endl;
+                else{
+                    int iteration=n-substraction;
+                    for(int j=0;j<iteration;j++){
+                        for(int k=0;k<4;k++){
+                           aux=aux+increasing;
+                           sum=sum+aux;
+                           if(k==3) increasing+=2;
+                        }
+                    }
+                    cout<<"En un espiral de "<<n<<"x"<<n<<", la suma es: "<<sum<<endl;
+                }
+            break;
+            }
+            case 17:{
+
+            }
         }
     }
 
