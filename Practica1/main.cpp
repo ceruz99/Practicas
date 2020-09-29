@@ -1,3 +1,8 @@
+/*
+ Practica #1
+ Juan Camilo Mazo Castro
+*/
+
 #include <iostream>
 
 using namespace std;
@@ -238,7 +243,7 @@ int main()
             }
             case 15:{
                 int n=0,sum=1,increasing=2,aux=1,substraction=2;
-                cout<<"Ingrese el numero n de la espiral nxn: "<<endl; cin>>n;
+                cout<<"Ingrese el numero n del espiral nxn: "<<endl; cin>>n;
                 for(int w=3;w<n;w+=2){
                     substraction+=1;
                 }
@@ -257,7 +262,21 @@ int main()
             break;
             }
             case 17:{
-
+                int k=0, n=0, triangular=0,divider=0;
+                cout<<"Ingrese el numero k para calcular el primer numero triangular que tiene mas de k divisores "<<endl; cin>>k;
+                bool found=false;
+                while(found==false){
+                    n+=1;
+                    triangular=(n*(n+1))/2;
+                    divider=0;
+                    for(int j=1;j<=triangular;j++){
+                        if(triangular%j==0)
+                            divider+=1;
+                    }
+                    if(divider>k) found=true;
+                }
+                cout<<"El numero es: "<<triangular<<" que tiene "<<divider<<" divisores "<<endl;
+            break;
             }
         }
     }
