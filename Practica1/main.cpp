@@ -162,13 +162,13 @@ int main()
                     else{
                         result=result+r2;
                         cout<<r2;
+                        if(b*(mult+1)<c){
+                            cout<<"+";
+                        }
                     }
                     mult+=1;
                     r2=b*mult;
-                    if(b*mult+1<c){
-                        cout<<"+";
-                    }
-                    else{
+                    if(b*mult+1>=c){
                         break;
                     }
                 }
