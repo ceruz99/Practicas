@@ -15,6 +15,8 @@ void deleteRepeatedLyrics(char []);//Toma un arreglo char e imprime el arreglo s
 void romanValue();//Pide una cadena de caracteres con un numero romano y lo transforma a un numero arabigo.
 void cinema();//Muestra los asientos del cine, luego permite reservar y cancelar puestos.
 void numberStars(float **,int ,int );//Toma la matriz e indica cuántas estrellas hay en ella.
+void turnMatrix(int **);// Toma la matriz 5x5 y la gira 90 grados.
+void ways(unsigned int );//Recibe un numero n para crear la matrix nxn e indicar el numero de caminos en esta.
 
 int main(){
     int selection=1;
@@ -86,6 +88,44 @@ int main(){
                     }
                 }
                 numberStars(matrix,filas,columnas);
+                delete [] matrix;
+            break;
+            }
+
+            case 14:{
+                int **matrix;
+                matrix= new int *[5];
+                for(int i=0;i<5;i++){
+                    matrix[i]= new int [5];
+                }
+                int number=1;
+                for(int i=0;i<5;i++){
+                    for(int j=0;j<5;j++){
+                        *(*(matrix+i)+j)=number;
+                        cout<<number<<" ";
+                        number+=1;
+                    }
+                    cout<<endl;
+                }
+                int answer;
+                cout<<"Ingrese 1 para girar la matriz 90 grados "<<endl<<"Ingrese 2 para girar la matriz 180 grados "<<endl<<"Ingrese 3 para girar la matriz 270 grados "<<endl; cin>>answer;
+                for(int i=0;i<answer;i++){
+                    turnMatrix(matrix);
+                }
+                for(int i=0;i<5;i++){
+                    for(int j=0;j<5;j++){
+                        cout<<*(*(matrix+i)+j)<<" ";
+                    }
+                    cout<<endl;
+                }
+                delete [] matrix;
+            break;
+            }
+
+            case 16:{
+                unsigned int n;
+                cout<<"Ingrese el numero n para crear la matriz nxn "<<endl; cin>>n;
+                ways(n);
             break;
             }
         }
@@ -436,4 +476,36 @@ void numberStars(float **p,int filas ,int columnas){
         }
     }
     cout<<"El numero de estrellas encontradas es: "<<count<<endl;
+}
+
+void turnMatrix(int **p){
+    int **p2;
+    p2= new int*[5];
+    for(int i=0;i<5;i++){
+        p2[i]=new int[5];
+    }
+    for(int i=0;i<5;i++){
+        for(int j=0;j<5;j++){
+            *(*(p2+i)+j)=*(*(p+i)+j);
+        }
+    }
+    for(int i=0;i<5;i++){
+        int k=4;
+        for(int j=0;j<5;j++){
+            *(*(p+i)+j)=*(*(p2+k)+i);
+            k-=1;
+        }
+    }
+    delete [] p2;
+}
+
+void ways(unsigned int n){
+    long int matrix[n+1][n+1];
+    for(unsigned int i=0;i<=n;i++){
+        for(unsigned int j=0;j<=n;j++){
+            if(i==0 || j==0) matrix[i][j]=1;
+            else matrix[i][j]=(matrix[i-1][j])+(matrix[i][j-1]);
+        }
+    }
+    cout<<"La matriz tiene "<<matrix[n][n]<<" caminos. "<<endl;
 }
