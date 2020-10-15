@@ -1,4 +1,4 @@
-// Juan Camilo Mazo Castro - Practica 2 Info ll UdeA.
+// Juan Camilo Mazo Castro - Practica 2 Info II UdeA.
 // Problemas a resolver: 2,3,5,7,10,11,13,14,16,17
 
 #include <iostream>
@@ -17,6 +17,7 @@ void cinema();//Muestra los asientos del cine, luego permite reservar y cancelar
 void numberStars(float **,int ,int );//Toma la matriz e indica cuántas estrellas hay en ella.
 void turnMatrix(int **);// Toma la matriz 5x5 y la gira 90 grados.
 void ways(unsigned int );//Recibe un numero n para crear la matrix nxn e indicar el numero de caminos en esta.
+unsigned long int sumDivisor(unsigned long int );//Toma un numero y suma sus divisores exceptuando el mismo numero.
 
 int main(){
     int selection=1;
@@ -126,6 +127,24 @@ int main(){
                 unsigned int n;
                 cout<<"Ingrese el numero n para crear la matriz nxn "<<endl; cin>>n;
                 ways(n);
+            break;
+            }
+
+            case 17:{
+                unsigned long int n=0;
+                cout<<"Ingrese el numero n para hallar la suma de los numeros amigables menores que n: "; cin>>n; cout<<endl;
+                if(n<285) cout<<"El resultado es 0 ";
+                else{
+                    unsigned long int result=0;
+                    for(unsigned long int i=220;i<n;i++){
+                        unsigned long int result1=sumDivisor(i);
+                        unsigned long int result2=sumDivisor(result1);
+                        if(result2==i && i<n && result2<n && result1!=result2){
+                            result=result+i+result1;
+                        }
+                    }
+                    cout<<"El resultado es: "<<result/2<<endl;
+                }
             break;
             }
         }
@@ -508,4 +527,12 @@ void ways(unsigned int n){
         }
     }
     cout<<"La matriz tiene "<<matrix[n][n]<<" caminos. "<<endl;
+}
+
+unsigned long int sumDivisor(unsigned long int number){
+    unsigned long int sum=1;
+    for(unsigned long int i=2; i<number; i++){
+        if(number%i==0) sum=sum+i;
+    }
+    return sum;
 }
