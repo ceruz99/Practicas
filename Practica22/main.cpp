@@ -1,6 +1,6 @@
 // Juan Camilo Mazo Castro - Practica 2 Info II UdeA.
 // Problemas a resolver: 2,3,5,7,10,11,13,14,16,17
-
+/*                       3,5,7,8,9,11,13,16,17*/
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -11,12 +11,12 @@ bool comparison(char [], char [], int );//Toma dos arreglos char y verifica si a
 int lengthArrayChar(char []);//Indica cual es la medida de un arreglo tipo char.
 int countDigits(int );//Indica el numero de digitos que tiene un entero.
 void makeArrayInt(int *,int ,int );//Realiza un arreglo con los digitos de un entero.
-void deleteRepeatedLyrics(char []);//Toma un arreglo char e imprime el arreglo sin los caracteres repetidos.
+void problem7();//Toma un arreglo char e imprime el arreglo sin los caracteres repetidos.
 void romanValue();//Pide una cadena de caracteres con un numero romano y lo transforma a un numero arabigo.
 void cinema();//Muestra los asientos del cine, luego permite reservar y cancelar puestos.
-void numberStars(float **,int ,int );//Toma la matriz e indica cuántas estrellas hay en ella.
+void numberStars(int **,int ,int );//Toma la matriz e indica cuántas estrellas hay en ella.
 void turnMatrix(int **);// Toma la matriz 5x5 y la gira 90 grados.
-void ways(unsigned int );//Recibe un numero n para crear la matrix nxn e indicar el numero de caminos en esta.
+void problem16();//Recibe un numero n para crear la matrix nxn e indicar el numero de caminos en esta.
 unsigned long int sumDivisor(unsigned long int );//Toma un numero y suma sus divisores exceptuando el mismo numero.
 
 int main(){
@@ -39,6 +39,8 @@ int main(){
                     else
                         cout<<"Las palabras son diferentes "<<endl;
                 }
+                cout<<word1<<endl;
+                cout<<word2<<endl;
             break;
             }
 
@@ -58,9 +60,7 @@ int main(){
             }
 
             case 7:{
-                char word[25];
-                cout<<"Ingrese la palabra a la cual se le retiraran las letras repetidas: "<<endl; cin>>word;
-                deleteRepeatedLyrics(word);
+                problem7();
             break;
             }
 
@@ -78,10 +78,10 @@ int main(){
                 int filas=0,columnas=0;
                 cout<<"Introduzca el numero de filas de la matriz: "; cin>>filas;
                 cout<<"Introduzca el numbero de columnas de la matriz: "; cin>>columnas;
-                float **matrix;
-                matrix= new float *[filas];
+                int **matrix;
+                matrix= new int *[filas];
                 for(int i=0;i<filas;i++){
-                    matrix[i]=new float[columnas];
+                    matrix[i]=new int[columnas];
                 }
                 for(int j=0; j<filas;j++){
                     for(int k=0;k<columnas;k++){
@@ -124,9 +124,7 @@ int main(){
             }
 
             case 16:{
-                unsigned int n;
-                cout<<"Ingrese el numero n para crear la matriz nxn "<<endl; cin>>n;
-                ways(n);
+                problem16();
             break;
             }
 
@@ -168,7 +166,6 @@ void problem2(){
         }
         if(count>0) cout<<letter<<":"<<count<<endl;
     }
-
 }
 
 int lengthArrayChar(char array[]){
@@ -204,6 +201,7 @@ int countDigits(int number){
     }
     return count;
 }
+
 void makeArrayInt(int *p,int num,int length){
     int divider=1;
     for(int i=1;i<length;i++){
@@ -218,16 +216,24 @@ void makeArrayInt(int *p,int num,int length){
     }
 }
 
-void deleteRepeatedLyrics(char word[]){
+void problem7(){
+    char word[25];
+    cout<<"Ingrese la palabra a la cual se le retiraran las letras repetidas: "<<endl; cin>>word;
     int n=lengthArrayChar(word);
     char newWord[n];
+    for(int i=0;i<n;i++){
+        newWord[i]='-';
+    }
     newWord[0]=word[0];
     int k=1;
     for(int i=1;i<n;i++){
         char lyrics=word[i];
         bool include=true;
         for(int j=0;j<n;j++){
-            if(newWord[j]==lyrics) include=false;
+            if(newWord[j]==lyrics){
+                include=false;
+                break;
+            }
         }
         if(include==true){
             newWord[k]=lyrics;
@@ -397,7 +403,8 @@ void cinema(){
             cout<<endl;
         }
         char fila, option; int columna;
-        cout<<"Ingrese a para reservar un asiento "<<endl<<"Ingrese b para cancelar una reserva "<<endl; cin>>option;
+        cout<<"Ingrese a para reservar un asiento "<<endl<<"Ingrese b para cancelar una reserva "<<endl;
+        cin>>option;
         if(option!='a' && option!='b') break;
         cout<<"Ingrese la fila A-O "<<endl; cin>>fila;
         cout<<"Ingrese la columna 1-20 "<<endl; cin>>columna;
@@ -485,8 +492,8 @@ void cinema(){
     delete [] matrix;
 }
 
-void numberStars(float **p,int filas ,int columnas){
-    float result=0;
+void numberStars(int **p,int filas ,int columnas){
+    int result=0;
     int count=0;
     for(int i=1;i<(filas-1);i++){
         for(int j=1;j<(columnas-1);j++){
@@ -518,7 +525,9 @@ void turnMatrix(int **p){
     delete [] p2;
 }
 
-void ways(unsigned int n){
+void problem16(){
+    unsigned int n;
+    cout<<"Ingrese el numero n para crear la matriz nxn "<<endl; cin>>n;
     long int matrix[n+1][n+1];
     for(unsigned int i=0;i<=n;i++){
         for(unsigned int j=0;j<=n;j++){
